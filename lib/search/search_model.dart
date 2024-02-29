@@ -1,5 +1,4 @@
 import '/auth/base_auth_user_provider.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/a_i_combination_card_widget.dart';
@@ -8,8 +7,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'search_widget.dart' show SearchWidget;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -41,8 +38,6 @@ class SearchModel extends FlutterFlowModel<SearchWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (AutomationPromptAPI)] action in Button widget.
-  ApiCallResponse? apiResultsyp;
 
   /// Initialization and disposal methods.
 

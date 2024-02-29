@@ -1,46 +1,13 @@
 const axios = require("axios").default;
 const qs = require("qs");
 
-async function _automationPromptAPICall(context, ffVariables) {
-  if (!context.auth) {
-    return _unauthenticatedResponse;
-  }
-  var prompt = ffVariables["prompt"];
-  var apiKey = ffVariables["apiKey"];
-
-  var url = `https://api.openai.com/v1/chat/completions`;
-  var headers = { Authorization: `Bearer ${apiKey}` };
-  var params = {};
-  var ffApiRequestBody = `
-{
-  "model": "gpt-4-turbo-preview",
-  "messages": ${prompt}
-}`;
-
-  return makeApiRequest({
-    method: "post",
-    url,
-    headers,
-    params,
-    body: createBody({
-      headers,
-      params,
-      body: ffApiRequestBody,
-      bodyType: "JSON",
-    }),
-    returnBody: true,
-  });
-}
-
 /// Helper functions to route to the appropriate API Call.
 
 async function makeApiCall(context, data) {
   var callName = data["callName"] || "";
   var variables = data["variables"] || {};
 
-  const callMap = {
-    AutomationPromptAPICall: _automationPromptAPICall,
-  };
+  const callMap = {};
 
   if (!(callName in callMap)) {
     return {

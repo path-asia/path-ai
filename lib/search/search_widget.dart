@@ -1,5 +1,4 @@
 import '/auth/base_auth_user_provider.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/a_i_combination_card_widget.dart';
@@ -8,8 +7,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -424,42 +421,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 5.0, 5.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          _model.apiResultsyp =
-                                              await AutomationPromptAPICall
-                                                  .call(
-                                            apiKey:
-                                                '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',
-                                            promptJson:
-                                                functions.getFormattedPrompt(
-                                                    _model.textController.text),
-                                          );
-                                          if ((_model.apiResultsyp?.succeeded ??
-                                              true)) {
-                                            setState(() {
-                                              _model
-                                                  .aiToolCombos = (getJsonField(
-                                                (_model.apiResultsyp
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$.combinations''',
-                                                true,
-                                              )!
-                                                          .toList()
-                                                          .map<AIToolCombinationStruct?>(
-                                                              AIToolCombinationStruct
-                                                                  .maybeFromMap)
-                                                          .toList()
-                                                      as Iterable<
-                                                          AIToolCombinationStruct?>)
-                                                  .withoutNulls
-                                                  .toList()
-                                                  .cast<
-                                                      AIToolCombinationStruct>();
-                                            });
-                                          }
-
-                                          setState(() {});
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: '',
                                         icon: Icon(
