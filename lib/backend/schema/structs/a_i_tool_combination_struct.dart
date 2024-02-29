@@ -13,16 +13,16 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
     String? combinationTitle,
     List<AIToolStruct>? aiTools,
     String? pricingModel,
-    double? price,
     List<String>? advantages,
     List<String>? disadvantages,
+    String? price,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _combinationTitle = combinationTitle,
         _aiTools = aiTools,
         _pricingModel = pricingModel,
-        _price = price,
         _advantages = advantages,
         _disadvantages = disadvantages,
+        _price = price,
         super(firestoreUtilData);
 
   // "combination_title" field.
@@ -45,13 +45,6 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
   set pricingModel(String? val) => _pricingModel = val;
   bool hasPricingModel() => _pricingModel != null;
 
-  // "price" field.
-  double? _price;
-  double get price => _price ?? 0.0;
-  set price(double? val) => _price = val;
-  void incrementPrice(double amount) => _price = price + amount;
-  bool hasPrice() => _price != null;
-
   // "advantages" field.
   List<String>? _advantages;
   List<String> get advantages => _advantages ?? const [];
@@ -68,6 +61,12 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
       updateFn(_disadvantages ??= []);
   bool hasDisadvantages() => _disadvantages != null;
 
+  // "price" field.
+  String? _price;
+  String get price => _price ?? '';
+  set price(String? val) => _price = val;
+  bool hasPrice() => _price != null;
+
   static AIToolCombinationStruct fromMap(Map<String, dynamic> data) =>
       AIToolCombinationStruct(
         combinationTitle: data['combination_title'] as String?,
@@ -76,9 +75,9 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
           AIToolStruct.fromMap,
         ),
         pricingModel: data['pricing_model'] as String?,
-        price: castToType<double>(data['price']),
         advantages: getDataList(data['advantages']),
         disadvantages: getDataList(data['disadvantages']),
+        price: data['price'] as String?,
       );
 
   static AIToolCombinationStruct? maybeFromMap(dynamic data) => data is Map
@@ -89,9 +88,9 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
         'combination_title': _combinationTitle,
         'ai_tools': _aiTools?.map((e) => e.toMap()).toList(),
         'pricing_model': _pricingModel,
-        'price': _price,
         'advantages': _advantages,
         'disadvantages': _disadvantages,
+        'price': _price,
       }.withoutNulls;
 
   @override
@@ -109,10 +108,6 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
           _pricingModel,
           ParamType.String,
         ),
-        'price': serializeParam(
-          _price,
-          ParamType.double,
-        ),
         'advantages': serializeParam(
           _advantages,
           ParamType.String,
@@ -122,6 +117,10 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
           _disadvantages,
           ParamType.String,
           true,
+        ),
+        'price': serializeParam(
+          _price,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -144,11 +143,6 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        price: deserializeParam(
-          data['price'],
-          ParamType.double,
-          false,
-        ),
         advantages: deserializeParam<String>(
           data['advantages'],
           ParamType.String,
@@ -158,6 +152,11 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
           data['disadvantages'],
           ParamType.String,
           true,
+        ),
+        price: deserializeParam(
+          data['price'],
+          ParamType.String,
+          false,
         ),
       );
 
@@ -171,9 +170,9 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
         combinationTitle == other.combinationTitle &&
         listEquality.equals(aiTools, other.aiTools) &&
         pricingModel == other.pricingModel &&
-        price == other.price &&
         listEquality.equals(advantages, other.advantages) &&
-        listEquality.equals(disadvantages, other.disadvantages);
+        listEquality.equals(disadvantages, other.disadvantages) &&
+        price == other.price;
   }
 
   @override
@@ -181,16 +180,16 @@ class AIToolCombinationStruct extends FFFirebaseStruct {
         combinationTitle,
         aiTools,
         pricingModel,
-        price,
         advantages,
-        disadvantages
+        disadvantages,
+        price
       ]);
 }
 
 AIToolCombinationStruct createAIToolCombinationStruct({
   String? combinationTitle,
   String? pricingModel,
-  double? price,
+  String? price,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
