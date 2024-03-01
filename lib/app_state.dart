@@ -17,12 +17,32 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _aiToolComboList = prefs
+              .getStringList('ff_aiToolComboList')
+              ?.map((x) {
+                try {
+                  return AIToolCombinationStruct.fromSerializableMap(
+                      jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _aiToolComboList;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   List<CourseSectionStruct> _courseSections = [];
   List<CourseSectionStruct> get courseSections => _courseSections;
@@ -88,4 +108,58 @@ class FFAppState extends ChangeNotifier {
   set selectedTag(String _value) {
     _selectedTag = _value;
   }
+
+  List<AIToolCombinationStruct> _aiToolComboList = [];
+  List<AIToolCombinationStruct> get aiToolComboList => _aiToolComboList;
+  set aiToolComboList(List<AIToolCombinationStruct> _value) {
+    _aiToolComboList = _value;
+    prefs.setStringList(
+        'ff_aiToolComboList', _value.map((x) => x.serialize()).toList());
+  }
+
+  void addToAiToolComboList(AIToolCombinationStruct _value) {
+    _aiToolComboList.add(_value);
+    prefs.setStringList('ff_aiToolComboList',
+        _aiToolComboList.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromAiToolComboList(AIToolCombinationStruct _value) {
+    _aiToolComboList.remove(_value);
+    prefs.setStringList('ff_aiToolComboList',
+        _aiToolComboList.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromAiToolComboList(int _index) {
+    _aiToolComboList.removeAt(_index);
+    prefs.setStringList('ff_aiToolComboList',
+        _aiToolComboList.map((x) => x.serialize()).toList());
+  }
+
+  void updateAiToolComboListAtIndex(
+    int _index,
+    AIToolCombinationStruct Function(AIToolCombinationStruct) updateFn,
+  ) {
+    _aiToolComboList[_index] = updateFn(_aiToolComboList[_index]);
+    prefs.setStringList('ff_aiToolComboList',
+        _aiToolComboList.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInAiToolComboList(
+      int _index, AIToolCombinationStruct _value) {
+    _aiToolComboList.insert(_index, _value);
+    prefs.setStringList('ff_aiToolComboList',
+        _aiToolComboList.map((x) => x.serialize()).toList());
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }

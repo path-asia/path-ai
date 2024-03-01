@@ -85,17 +85,19 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  valueOrDefault<String>(
-                    widget.automationTitle,
-                    'N/A',
+                Expanded(
+                  child: Text(
+                    valueOrDefault<String>(
+                      widget.automationTitle,
+                      'N/A',
+                    ),
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                          fontFamily: 'Montserrat',
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
-                  textAlign: TextAlign.end,
-                  style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Montserrat',
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                      ),
                 ),
                 Container(
                   height: 30.0,
@@ -126,7 +128,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                     ),
                   ),
                 ),
-              ],
+              ].divide(SizedBox(width: 10.0)),
             ),
             Divider(
               height: 30.0,
@@ -338,7 +340,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                                     combinationAdvantages[
                                         combinationAdvantagesIndex];
                                 return Text(
-                                  '- Not scalable',
+                                  '- ${combinationAdvantagesItem}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -390,7 +392,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                                     combinationDisadvantages[
                                         combinationDisadvantagesIndex];
                                 return Text(
-                                  '- Not scalable',
+                                  '- ${combinationDisadvantagesItem}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
