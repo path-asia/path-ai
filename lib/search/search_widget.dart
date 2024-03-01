@@ -14,6 +14,8 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'search_model.dart';
 export 'search_model.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 
 class SearchWidget extends StatefulWidget {
   const SearchWidget({super.key});
@@ -44,6 +46,57 @@ class _SearchWidgetState extends State<SearchWidget> {
 
     super.dispose();
   }
+
+  // CUSTOM_CODE_STARTED
+// Method to call the Cloud Function
+  Future<void> callAiToolsAutomationFunction() async {
+    // Retrieve user's prompt from the text controller
+    final userPromptText = _model.textController?.text ?? '';
+    if (userPromptText.isEmpty) {
+      print("User prompt is empty.");
+      return; // Exit if there's no input from user to avoid calling the function unnecessarily
+    }
+
+    // Format the user's prompt using the provided structure
+    final formattedUserPrompt = functions.getFormattedPrompt(userPromptText);
+
+    try {
+      final functions = FirebaseFunctions.instance;
+      final callable = functions.httpsCallable('callOpenAI');
+      final response = await callable.call({
+        'userPrompt': formattedUserPrompt,
+      });
+      print("response.data: ${response.data}");
+      print(
+          "response.data['result']['choices']: ${response.data['result']['choices']}");
+      // Parse the response into your AIToolCombinationStruct
+      final String content =
+          response.data['result']['choices'][0]['message']['content'];
+      // Assuming 'content' is a JSON string containing the combinations, parse it
+      // Remove the backticks and any other non-JSON compliant formatting
+      final String jsonContent =
+          content.replaceAll('```json', '').replaceAll('```', '').trim();
+
+      // Parse the cleaned JSON string
+      final Map<String, dynamic> contentData = jsonDecode(jsonContent);
+      final List<dynamic> aiToolCombinationsData = contentData['combinations'];
+
+      // Now, parse the aiToolCombinationsData into your AIToolCombinationStruct
+      final List<AIToolCombinationStruct> aiToolCombinations =
+          aiToolCombinationsData
+              .map((data) => AIToolCombinationStruct.fromMap(data))
+              .toList();
+
+      setState(() {
+        // Update the model with the new AI tool combinations
+        _model.aiToolCombos = aiToolCombinations;
+      });
+    } catch (e) {
+      print("Error calling Cloud Function: $e");
+      // Handle the error or show a message to the user
+    }
+  }
+// CUSTOM_CODE_ENDED
 
   @override
   Widget build(BuildContext context) {
@@ -421,8 +474,12 @@ class _SearchWidgetState extends State<SearchWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 5.0, 5.0),
                                       child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          final userPromptText =
+                                              _model.textController?.text ?? '';
+                                          if (userPromptText.isNotEmpty) {
+                                            await callAiToolsAutomationFunction();
+                                          }
                                         },
                                         text: '',
                                         icon: Icon(

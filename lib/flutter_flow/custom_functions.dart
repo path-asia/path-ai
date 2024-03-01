@@ -17,8 +17,8 @@ dynamic getFormattedPrompt(String userPrompt) {
   return [
     {
       "role": "system",
-      "content":
-          """As a specialized search module, your role is to provide users with at least three distinct combinations of current AI tools tailored to their specified tasks. Users will present a requirement, such as "design a landing page for my pet shop" or "generate an Excel sheet with insurance premium calculation formulas." Your response should cater to these needs by offering optimal AI tool combinations, structured in a clear and actionable format.
+      "content": """
+As a specialized search module, your role is to provide users with at least three distinct combinations of current AI tools tailored to their specified tasks. Users will present a requirement, such as "design a landing page for my pet shop" or "generate an Excel sheet with insurance premium calculation formulas." Your response should cater to these needs by offering optimal AI tool combinations, structured in a clear and actionable format.
 
 Output Format: Your response should be in JSON format, offering a structured, detailed breakdown of each AI tool combination. Below is the structure you should follow:
 

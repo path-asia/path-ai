@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'a_i_combination_card_model.dart';
 export 'a_i_combination_card_model.dart';
 
@@ -64,20 +65,20 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: 450.0,
+      width: 450,
       constraints: BoxConstraints(
-        maxWidth: 570.0,
+        maxWidth: 570,
       ),
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: FlutterFlowTheme.of(context).alternate,
-          width: 1.0,
+          width: 1,
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -85,32 +86,33 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  valueOrDefault<String>(
-                    widget.automationTitle,
-                    'N/A',
+                Expanded(
+                  child: Text(
+                    valueOrDefault<String>(
+                      widget.automationTitle,
+                      'N/A',
+                    ),
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                          fontFamily: 'Montserrat',
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
-                  textAlign: TextAlign.end,
-                  style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Montserrat',
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                      ),
                 ),
                 Container(
-                  height: 30.0,
+                  height: 30,
                   constraints: BoxConstraints(
-                    minWidth: 100.0,
+                    minWidth: 100,
                   ),
                   decoration: BoxDecoration(
                     color: Color(0xFFEAEAEA),
                     borderRadius: BorderRadius.circular(7.5),
                   ),
                   child: Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0, 0),
                     child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                       child: AutoSizeText(
                         valueOrDefault<String>(
                           widget.paymentModel,
@@ -119,25 +121,25 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Mulish',
                               color: FlutterFlowTheme.of(context).primary,
-                              fontSize: 12.0,
+                              fontSize: 12,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
                     ),
                   ),
                 ),
-              ],
+              ].divide(SizedBox(width: 10)),
             ),
             Divider(
-              height: 30.0,
-              thickness: 1.0,
+              height: 30,
+              thickness: 1,
               color: FlutterFlowTheme.of(context).alternate,
             ),
             Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(12),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -147,8 +149,8 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            width: 50.0,
-                            height: 50.0,
+                            width: 50,
+                            height: 50,
                             clipBehavior: Clip.antiAlias,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -164,8 +166,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 5.0, 0.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                             child: Text(
                               valueOrDefault<String>(
                                 widget.aiToolOne?.name,
@@ -177,48 +178,48 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                         ],
                       ),
                       Stack(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: AlignmentDirectional(0, 1),
                         children: [
                           Transform.rotate(
                             angle: 1.5708,
                             child: Container(
-                              width: 80.0,
-                              height: 4.0,
+                              width: 80,
+                              height: 4,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).alternate,
-                                borderRadius: BorderRadius.circular(2.0),
+                                borderRadius: BorderRadius.circular(2),
                               ),
                             ),
                           ),
                           Stack(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0, 0),
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0, 0),
                                 child: Container(
-                                  width: 120.0,
-                                  height: 4.0,
+                                  width: 120,
+                                  height: 4,
                                   decoration: BoxDecoration(
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
-                                    borderRadius: BorderRadius.circular(2.0),
+                                    borderRadius: BorderRadius.circular(2),
                                   ),
                                 ),
                               ),
                               Container(
-                                width: 44.0,
-                                height: 44.0,
+                                width: 44,
+                                height: 44,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).alternate,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.unity,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                    size: 24.0,
+                                    size: 24,
                                   ),
                                 ),
                               ),
@@ -230,8 +231,8 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            width: 50.0,
-                            height: 50.0,
+                            width: 50,
+                            height: 50,
                             clipBehavior: Clip.antiAlias,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -247,8 +248,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 5.0, 0.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                             child: Text(
                               valueOrDefault<String>(
                                 widget.aiToolTwo?.name,
@@ -266,8 +266,8 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
-                      width: 50.0,
-                      height: 50.0,
+                      width: 50,
+                      height: 50,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -283,8 +283,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                       child: Text(
                         valueOrDefault<String>(
                           widget.aiToolThree?.name,
@@ -316,14 +315,13 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                         style:
                             FlutterFlowTheme.of(context).headlineSmall.override(
                                   fontFamily: 'Montserrat',
-                                  fontSize: 16.0,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                   decoration: TextDecoration.underline,
                                 ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.5, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12.5, 0, 0),
                         child: Builder(
                           builder: (context) {
                             final combinationAdvantages =
@@ -338,7 +336,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                                     combinationAdvantages[
                                         combinationAdvantagesIndex];
                                 return Text(
-                                  '- Not scalable',
+                                  '- ${combinationAdvantagesItem}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -346,7 +344,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                 );
-                              }).divide(SizedBox(height: 5.0)),
+                              }).divide(SizedBox(height: 5)),
                             );
                           },
                         ),
@@ -355,7 +353,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                   ),
                 ),
                 VerticalDivider(
-                  thickness: 1.0,
+                  thickness: 1,
                   color: FlutterFlowTheme.of(context).alternate,
                 ),
                 Expanded(
@@ -368,14 +366,13 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                         style:
                             FlutterFlowTheme.of(context).headlineSmall.override(
                                   fontFamily: 'Montserrat',
-                                  fontSize: 16.0,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                   decoration: TextDecoration.underline,
                                 ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.5, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12.5, 0, 0),
                         child: Builder(
                           builder: (context) {
                             final combinationDisadvantages =
@@ -390,7 +387,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                                     combinationDisadvantages[
                                         combinationDisadvantagesIndex];
                                 return Text(
-                                  '- Not scalable',
+                                  '- ${combinationDisadvantagesItem}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -398,7 +395,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                 );
-                              }).divide(SizedBox(height: 5.0)),
+                              }).divide(SizedBox(height: 5)),
                             );
                           },
                         ),
@@ -409,7 +406,7 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
               child: FFButtonWidget(
                 onPressed: () {
                   print('Button pressed ...');
@@ -417,25 +414,24 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                 text: 'Automate',
                 options: FFButtonOptions(
                   width: double.infinity,
-                  height: 50.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  height: 50,
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                  iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Mulish',
                         color: Colors.white,
                       ),
-                  elevation: 3.0,
+                  elevation: 3,
                   borderSide: BorderSide(
                     color: Colors.transparent,
-                    width: 1.0,
+                    width: 1,
                   ),
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
-          ].divide(SizedBox(height: 4.0)).addToEnd(SizedBox(height: 12.0)),
+          ].divide(SizedBox(height: 4)).addToEnd(SizedBox(height: 12)),
         ),
       ),
     );
