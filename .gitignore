@@ -1,0 +1,94 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IDEs and editors
+/.idea/
+/.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Web related
+/lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+app.*.sourcemaps
+app.*.json
+
+# Obfuscation related
+app.*.map.json
+
+# Android related
+**/android/**/*.gradle
+**/android/.gradle
+**/android/captures/
+*.jks
+*.keystore
+**/android/key.properties
+
+# iOS related
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/**/.sconsign.dblite
+**/ios/**/.tags*
+**/ios/**/.vagrant/
+**/ios/**/DerivedData/
+**/ios/**/.generated/
+**/ios/**/*.generated.json
+**/ios/**/*.generated.dart
+**/ios/**/*.pbxproj
+**/ios/.symlinks/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/ephemeral
+**/ios/ServiceDefinitions.json
+**/ios/.generated/
+ios/Flutter/.last_build_id
+
+# macOS related
+**/macos/Flutter/ephemeral
+**/macos/Flutter/.last_build_id
+
+# Linux related
+**/linux/flutter/ephemeral
+
+# Windows related
+**/windows/flutter/ephemeral
+
+# Coverage reports
+coverage/
+
+# Exceptions to the rules
+!**/ios/Flutter/.last_build_id
+!**/ios/Flutter/ephemeral/Flutter-Generated.xcconfig
