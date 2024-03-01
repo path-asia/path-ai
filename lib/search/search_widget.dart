@@ -480,7 +480,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                             child: Builder(
                               builder: (context) {
                                 final promptResults =
-                                    _model.aiToolCombos.toList();
+                                    FFAppState().aiToolComboList.toList();
                                 return Wrap(
                                   spacing: 50.0,
                                   runSpacing: 50.0,

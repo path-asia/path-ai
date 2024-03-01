@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -155,10 +156,15 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                             ),
-                            child: Image.network(
-                              widget.aiToolOne!.logo,
+                            child: CachedNetworkImage(
+                              fadeInDuration: Duration(milliseconds: 500),
+                              fadeOutDuration: Duration(milliseconds: 500),
+                              imageUrl: valueOrDefault<String>(
+                                widget.aiToolOne?.logo,
+                                'https://i.ibb.co/7N9CN6W/Main-PATH-LOGO.png',
+                              ),
                               fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
+                              errorWidget: (context, error, stackTrace) =>
                                   Image.asset(
                                 'assets/images/error_image.webp',
                                 fit: BoxFit.cover,
@@ -238,10 +244,15 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                             ),
-                            child: Image.network(
-                              widget.aiToolTwo!.logo,
+                            child: CachedNetworkImage(
+                              fadeInDuration: Duration(milliseconds: 500),
+                              fadeOutDuration: Duration(milliseconds: 500),
+                              imageUrl: valueOrDefault<String>(
+                                widget.aiToolTwo?.logo,
+                                'https://i.ibb.co/7N9CN6W/Main-PATH-LOGO.png',
+                              ),
                               fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
+                              errorWidget: (context, error, stackTrace) =>
                                   Image.asset(
                                 'assets/images/error_image.webp',
                                 fit: BoxFit.cover,
@@ -274,10 +285,15 @@ class _AICombinationCardWidgetState extends State<AICombinationCardWidget> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: Image.network(
-                        widget.aiToolThree!.logo,
+                      child: CachedNetworkImage(
+                        fadeInDuration: Duration(milliseconds: 500),
+                        fadeOutDuration: Duration(milliseconds: 500),
+                        imageUrl: valueOrDefault<String>(
+                          widget.aiToolThree?.logo,
+                          'https://i.ibb.co/7N9CN6W/Main-PATH-LOGO.png',
+                        ),
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
+                        errorWidget: (context, error, stackTrace) =>
                             Image.asset(
                           'assets/images/error_image.webp',
                           fit: BoxFit.cover,
