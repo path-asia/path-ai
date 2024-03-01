@@ -13,14 +13,14 @@ class AIToolStruct extends FFFirebaseStruct {
     String? name,
     String? url,
     String? description,
-    double? price,
     String? logo,
+    String? price,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _name = name,
         _url = url,
         _description = description,
-        _price = price,
         _logo = logo,
+        _price = price,
         super(firestoreUtilData);
 
   // "name" field.
@@ -41,25 +41,24 @@ class AIToolStruct extends FFFirebaseStruct {
   set description(String? val) => _description = val;
   bool hasDescription() => _description != null;
 
-  // "price" field.
-  double? _price;
-  double get price => _price ?? 0.0;
-  set price(double? val) => _price = val;
-  void incrementPrice(double amount) => _price = price + amount;
-  bool hasPrice() => _price != null;
-
   // "logo" field.
   String? _logo;
   String get logo => _logo ?? '';
   set logo(String? val) => _logo = val;
   bool hasLogo() => _logo != null;
 
+  // "price" field.
+  String? _price;
+  String get price => _price ?? '';
+  set price(String? val) => _price = val;
+  bool hasPrice() => _price != null;
+
   static AIToolStruct fromMap(Map<String, dynamic> data) => AIToolStruct(
         name: data['name'] as String?,
         url: data['url'] as String?,
         description: data['description'] as String?,
-        price: castToType<double>(data['price']),
         logo: data['logo'] as String?,
+        price: data['price'] as String?,
       );
 
   static AIToolStruct? maybeFromMap(dynamic data) =>
@@ -69,8 +68,8 @@ class AIToolStruct extends FFFirebaseStruct {
         'name': _name,
         'url': _url,
         'description': _description,
-        'price': _price,
         'logo': _logo,
+        'price': _price,
       }.withoutNulls;
 
   @override
@@ -87,12 +86,12 @@ class AIToolStruct extends FFFirebaseStruct {
           _description,
           ParamType.String,
         ),
-        'price': serializeParam(
-          _price,
-          ParamType.double,
-        ),
         'logo': serializeParam(
           _logo,
+          ParamType.String,
+        ),
+        'price': serializeParam(
+          _price,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -114,13 +113,13 @@ class AIToolStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        price: deserializeParam(
-          data['price'],
-          ParamType.double,
-          false,
-        ),
         logo: deserializeParam(
           data['logo'],
+          ParamType.String,
+          false,
+        ),
+        price: deserializeParam(
+          data['price'],
           ParamType.String,
           false,
         ),
@@ -135,21 +134,21 @@ class AIToolStruct extends FFFirebaseStruct {
         name == other.name &&
         url == other.url &&
         description == other.description &&
-        price == other.price &&
-        logo == other.logo;
+        logo == other.logo &&
+        price == other.price;
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([name, url, description, price, logo]);
+      const ListEquality().hash([name, url, description, logo, price]);
 }
 
 AIToolStruct createAIToolStruct({
   String? name,
   String? url,
   String? description,
-  double? price,
   String? logo,
+  String? price,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -159,8 +158,8 @@ AIToolStruct createAIToolStruct({
       name: name,
       url: url,
       description: description,
-      price: price,
       logo: logo,
+      price: price,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
